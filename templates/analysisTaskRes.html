@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分类任务结果</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+    <script language="JavaScript" src="../static/js/jquery-3.2.0.min.js"></script>
+    <script language="JavaScript" src="../static/js/bootstrap.min.js"></script>
+    <script language="JavaScript" src="../static/js/table-manipulate.js"></script>
+    <script language="JavaScript" src="../static/js/modal-control.js"></script>
+</head>
+<body>
+<div class="container-fluid" id="analysisTaskResPage">
+    <div class="row"><!--顶部搜索栏-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">分类任务结果</h1>
+            </div>
+            <div class="panel-body" name="search-bar">
+                <!--按字段搜索-->
+                <form class="form-inline pull-left"  id="analysisTaskResSearchBoard"></form>
+            </div>
+        </div>
+	</div> <!--顶部搜索栏-->
+
+    <div class="row" id="analysisTaskResAlert"></div>
+
+    <div class="row"><!--中间数据表-->
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h2 class="panel-title">  </h2>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead id="analysisTaskRes-table-header"></thead>
+                            <tbody id="analysisTaskRes-table-body"></tbody>
+                        </table>
+                </div>
+
+                <nav aria-label="Page navigation" id="analysisTaskRes-page-nav">
+                    <ul class="pager">
+                        <li>共有<span id="analysisTaskRes-total_rows"></span>条记录，</li>
+                        <li>共有<span id="analysisTaskRes-total_pages"></span>页，</li>
+                        <li>当前第<span id="analysisTaskRes-page"></span>页，</li>
+                        <li><a href="#">First</a></li>
+                        <li><a href="#">Previous</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+	</div><!--中间数据表-->
+</div>
+</body>
+
+<script>
+    var pageName = "analysisTaskRes";
+    var Search_List;
+
+
+    $(document).ready(function(){
+        $("#" + pageName + "-page-nav").attr("hidden","hidden");
+        //ajax请求用户列表，（json)
+        $.ajax({
+            url:"/" + pageName + "/tableList/",
+            type:'POST',
+            data: '',
+            datatype :'json', //
+            success: function(data){
+                obj = jQuery.parseJSON(data); //字符串转为json格式
+                if(obj.hasOwnProperty('alertType'))
+                    alertMsg(pageName,obj.alertType,obj.alertMsg);
+                if(obj.succeed == true){
+                    //收到列表消息，进行列表更新
+                    //表头
+                    var head_list = obj.table_schema_list;
+                    addTableHeader(head_list,pageName + "-table-header");
+
+                    //表体
+                    var data_list = obj.table_data;
+                    addTableBody(data_list, head_list, pageName + "-table-body","id");
+
+
+                    //搜索栏
+                    Search_List = addSearchBoard(obj, pageName);
+                    addSelectDict("search_form", obj.select_dict["searchType"], obj);
+
+
+                    $("#" + pageName + "SearchBoard button").click(function(){
+                        var request_data = getModalInput(Search_List,"search_form");
+                        alert(request_data);
+                        //ajax发送请求
+                        $.ajax({
+                            url:"/" + pageName +  "/tableList/",
+                            type:'POST',
+                            data: request_data,
+                            datatype :'json', //是预期服务器返回的数据格式=。=
+                            success: function(data){
+                                obj = jQuery.parseJSON(data); //字符串转为json格式
+
+                                if(obj.hasOwnProperty('alertType'))
+                                    alertMsg(pageName,obj.alertType,obj.alertMsg);
+                                if(obj.succeed == true){
+                                    //删掉table-content里的内容
+                                    deleteTableContent(pageName + "-table-body");
+                                    //重新插入
+                                    var head_list = obj.table_schema_list;
+                                    var data_list = obj.table_data;
+                                    addTableBody(data_list, head_list, pageName + "-table-body","id");
+                                    //alert(obj.message);
+                                }
+                            }
+                        })
+                    });
+                }
+            }
+        });
+
+    });
+
+
+</script>
+
+</html>

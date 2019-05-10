@@ -1,0 +1,54 @@
+[
+  {
+    "name":"#序号",
+    "data" :"userid",
+    "editType":"label",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"姓名",
+    "data" :"username",
+    "searchType":"input",
+    "editType":"input",
+    "plusType":"input",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"权限",
+    "data" :"identityName",
+    "searchType":"select",
+    "editType":"select",
+    "plusType":"select",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"邮箱",
+    "data" :"email",
+    "editType":"input",
+    "plusType":"input",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"最近一次任务",
+    "editType":"label",
+    "trashType":"label",
+    "data" :"lastTaskId",
+    "type":"text"
+  },
+  {
+    "name":"删除",
+    "type":"trash"
+  },
+  {
+    "name":"修改",
+    "type":"edit"
+  },
+  {
+    "name":"重置密码",
+    "type":"lock"
+  }
+]

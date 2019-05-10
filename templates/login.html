@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+<head>
+    <title> Login </title>
+    <link rel="stylesheet" type="text/css" href="css/login_style.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+    <script language="JavaScript" src="../static/js/jquery-3.2.0.min.js"></script>
+    <script language="JavaScript" src="../static/js/bootstrap.min.js"></script>
+    <script language="JavaScript" src="../static/js/js.cookie.js"></script>
+    <script language="JavaScript" src="../static/js/jquery.cookie.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <h1 align="center">
+            <span class="alert-danger">
+                你还没有登录，请先登录
+            </span>
+        </h1>
+	</div>
+
+	<div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4"></div>
+	        <img src="../static/images/login.png" align="center">
+        </div>
+	</div>
+    <div class= "row">
+        <div class="col-md-4"></div>
+        <input id="username" class="col-md-4" type="text" placeholder="username"/>
+        <div class="col-md-4"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-4"></div>
+        <input class="col-md-4" id="password" type="password" placeholder="password"/>
+		<div class="col-md-4"></div>
+	</div>
+	<div class="row">
+        <div class="col-md-6"></div>
+	    <button id="register-btn" type="button" class="btn btn-default col-md-1"> Register </button>
+        <button id="login-btn" type="button" class="btn btn-primary col-md-1"> Login </button>
+	</div>
+    <h4></h4>
+     <h2></h2>
+</div>
+</body>
+
+<script>
+    //login 的 ajax
+    $("#login-btn").click(function(){
+       //$("#username").attr("value",'点击login');
+        $.ajax({
+            url:"{{ url_for('login') }}",
+            type:'POST',
+            data: 'username='+$("#username").val()
+                    +'&&passwd='+$("#password").val(),
+            datatype :'json', //是预期服务器返回的数据格式=。=
+            success: function(data){
+                obj = jQuery.parseJSON(data); //字符串转为json格式
+                if(obj.successed == false)
+                    alert(obj.message);
+                else{
+                    //收到操作成功的消息，进行页面切换
+                    location.href = "{{ url_for('welcome') }}";
+                }
+            }
+        })
+    });
+
+    //register的ajax
+    $("#register-btn").click(function(){
+       //$("#username").attr("value",'点击login');
+        $.ajax({
+            url:"{{ url_for('register') }}",
+            type:'POST',
+            data: 'username='+$("#username").val()
+                    +'&&passwd='+$("#password").val(),
+            datatype :'json', //是预期服务器返回的数据格式=。=
+            success: function(data){
+                obj = jQuery.parseJSON(data); //字符串转为json格式
+
+                alert(obj.message);
+            }
+        })
+    });
+    document.cookie = 'escaped=%u5317';
+    document.cookie = 'default=%E5%8C%97';
+    var cookies = Cookies.withConverter(function (value, name) {
+        if ( name === 'escaped' ) {
+            return unescape(value);
+        }
+    });
+    alert(cookies.get('escaped')); // 北
+    cookies.set("auth","[{'a':1,'b':2},{'c':3}]");
+    var obj = cookies.get("auth");
+    alert(obj);
+    var jsonobj = eval(obj );
+    alert(jsonobj.length);
+    alert(JSON.stringify(jsonobj));
+    for( var o in jsonobj ){
+        alert(jsonobj[o].a);
+    }
+
+    /*$.cookie('a','bb');
+    var a = $.cookie('a');
+    alert(a == 'bb');
+    alert($.cookie('none'));
+    alert(jQuery.parseJSON($.cookie('escaped')));
+    */
+</script>
+
+
+
+</html>

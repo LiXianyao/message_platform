@@ -1,0 +1,24 @@
+[
+  {
+    "name":"#序号",
+    "data" :"id",
+    "type":"text"
+  },
+  {
+    "name":"模板编号",
+    "data" :"templateid",
+    "searchType":"input",
+    "type":"text"
+  },
+  {
+    "name":"内容",
+    "data" :"content",
+    "searchType":"input",
+    "type":"text"
+  },
+  {
+    "name":"是否新模板",
+    "data" :"newTpl",
+    "type":"text"
+  }
+]

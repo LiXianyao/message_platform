@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> HomePage</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/selfproduction.css">
+    <script language="JavaScript" src="../static/js/jquery-3.2.0.min.js"></script>
+    <script language="JavaScript" src="../static/js/bootstrap.min.js"></script>
+    <script language="JavaScript" src="../static/js/js.cookie.js"></script>
+    <script language="JavaScript" src="../static/js/jquery.cookie.js"></script>
+    <script language="JavaScript" src="../static/js/homePage-sideBar.js"></script>
+    <link href="../static/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+<!--主要内容为顶部巨幕-三次实验的标签页，分别引入三个标签页-->
+<div class="container-fluid" style="background-color: #66afe9">
+
+        <!--左侧导航栏-->
+        <div class="row">
+        <div class="col-xs-3 sidebar">
+            <nav class="navbar nav-sidebar">
+                <h1>商业短信分析系统</h1>
+                <div class="panel-group" id="section-list">
+                </div>
+            </nav>
+        </div>
+
+
+        <!--标签页选项-->
+        <div class="col-xs-offset-3">
+                    <nav class="navbar navbar-default ">
+
+                        <!---标签页-->
+                        <div class="row">
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav nav-tabs" role="tablist" id="function_tab_list">
+                                    <!--<li role="presentation" class="active" >
+                                    <a href="#information" aria-controls="information" role="tab" data-toggle="tab">个人信息
+                                        <i class="glyphicon glyphicon-remove-circle" aria-hidden="true"></i>
+                                    </a>
+                                </li>-->
+
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
+                <!--标签页内容-->
+                <div class="tab-content" style="color: white" id="tab-content">
+                </div>
+        </div> <!--标签页内容-->
+        </div>
+
+        <footer class="modal-footer" style="color: white;z-index:2001">
+            <p class="col-xs-offset-1 pull-right">
+                <a href="#">Back To Top</a>
+            </p>
+            <p class="pull-right">© 2018.1 BUPT</p>
+        </footer>
+
+
+ <!--   </div> <!-- container-->
+</div>
+</body>
+
+<script>
+    var functionArray = new Array();
+    var sectionArray = new Array();
+    var activeFunctionArray = new Array();
+
+    $(document).ready(function() {
+
+        //请求功能列表
+        $.ajax({
+            url: "/FunctionBoard/",
+            type: 'GET',
+            data: '',
+            datatype: 'json', //是预期服务器返回的数据格式=。=
+            success: function (data) {
+                auth_obj = jQuery.parseJSON(data); //字符串转为json格式
+                if(auth_obj.successed == false)
+                    alert("会话已过期或者非法登入");
+                else {
+                    var obj_functionlist = auth_obj.functionlist;
+                    for( var obj in obj_functionlist){
+
+                        var function_name = obj_functionlist[obj].functionName;
+                        var section_name = obj_functionlist[obj].sectionName;
+                        var section_id = obj_functionlist[obj].sectionId;
+                        var function_src = obj_functionlist[obj].functionSrc;
+
+                        if($.inArray(section_id, sectionArray) === -1){
+                            sectionArray.push(section_id);
+                            addSection(section_id, section_name);
+                        } //功能组已存在
+                        if($.inArray(function_name, functionArray) === -1){
+                            functionArray.push(function_name);
+                            addFuction(section_id,function_name,function_src);
+                        }
+                    }
+
+                    //绑定点击事件 --具体功能
+                    for( var i in sectionArray){
+                        $("#section" + sectionArray[i].toString() + "List a").click(function () {
+                            $("div.list-group a.active").removeClass("active");
+                            $(this).addClass("active");
+
+                            var function_src = $(this).attr("src");
+                            if($.inArray(function_src,activeFunctionArray) != -1)
+                                return;
+                            activeFunctionArray.push(function_src);
+                            addFuctionTab($(this).text(), function_src);
+
+                            $("i.glyphicon-remove-circle").click(function () {
+                                //标签关闭：
+                                //标签栏减少
+                                var func_src = $(this).attr("function_src");
+                                var to_remove_tab = document.getElementById(func_src + "_tab_li");
+                                document.getElementById("function_tab_list").removeChild(to_remove_tab);
+
+                                //标签页取消
+                                var to_remove_page = document.getElementById(func_src);
+                                document.getElementById("tab-content").removeChild(to_remove_page);
+
+                                activeFunctionArray.splice($.inArray(func_src,activeFunctionArray),1);
+                            });
+                            //alert($(this).text());
+                        });
+                    }
+
+                    //点击事件--功能组
+                    $("#section-list div div h4 a.list-group-item").click(function(){
+                        $("#section-list div div h4 a.list-group-item.active").removeClass("active");
+                        $(this).addClass("active");
+                    });
+                }
+            }
+        })
+    });
+
+</script>
+
+
+
+</html>

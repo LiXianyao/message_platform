@@ -1,0 +1,51 @@
+[
+  {
+    "name":"功能组号",
+    "data" :"sectionId",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"功能组名",
+    "data" :"sectionName",
+    "searchType":"select",
+    "plusType":"select",
+    "newType":"input",
+    "editType":"select",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"功能id",
+    "data" :"functionId",
+    "searchType":"input",
+    "editType":"label",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"功能名",
+    "data" :"functionName",
+    "searchType":"select",
+    "plusType":"input",
+    "editType":"input",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"功能根路径",
+    "data" :"functionSrc",
+    "plusType":"input",
+    "editType":"input",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"删除",
+    "type":"trash"
+  },
+  {
+    "name":"修改",
+    "type":"edit"
+  }
+]

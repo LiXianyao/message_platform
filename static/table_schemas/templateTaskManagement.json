@@ -1,0 +1,54 @@
+[
+  {
+    "name":"任务编号",
+    "data" :"taskid",
+    "searchType":"input",
+    "editType":"label",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"用户名",
+    "data" :"username",
+    "searchType":"input",
+    "editType":"label",
+    "plusType":"label",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"任务状态",
+    "data" :"status",
+    "searchType":"select",
+    "editType":"label",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"",
+    "data" :"dataFileName",
+    "editType":"input",
+    "plusType":"input",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"最近一次任务",
+    "editType":"label",
+    "trashType":"label",
+    "data" :"lastTaskId",
+    "type":"text"
+  },
+  {
+    "name":"删除",
+    "type":"trash"
+  },
+  {
+    "name":"修改",
+    "type":"edit"
+  },
+  {
+    "name":"重置密码",
+    "type":"lock"
+  }
+]

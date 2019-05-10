@@ -1,0 +1,68 @@
+[
+  {
+    "name":"#序号",
+    "data" :"sms_id",
+    "type":"text"
+  },
+  {
+    "name":"任务号",
+    "data" :"task_id",
+    "searchType":"select",
+    "type":"text"
+  },
+  {
+    "name":"签名",
+    "data" :"sign",
+    "searchType":"input",
+    "type":"text"
+  },
+  {
+    "name":"内容",
+    "data" :"content",
+    "type":"text"
+  },
+  {
+    "name":"行业标签1",
+    "data" :"industry1_name",
+    "searchType":"input",
+    "type":"text"
+  },
+  {
+    "name":"行业标签1概率",
+    "data" :"industry1_prob",
+    "type":"text"
+  },
+  {
+    "name":"行业标签2",
+    "data" :"industry2_name",
+    "searchType":"input",
+    "type":"text"
+  },
+  {
+    "name":"行业标签2概率",
+    "data" :"industry2_prob",
+    "type":"text"
+  },
+  {
+    "name":"行业标签3",
+    "data" :"industry3_name",
+    "searchType":"input",
+    "type":"text"
+  },
+  {
+    "name":"行业标签3概率",
+    "data" :"industry3_prob",
+    "type":"text"
+  },
+  {
+    "name":"风险标签",
+    "data" :"offline_risk_name",
+    "searchType":"input",
+    "type":"text"
+  },
+  {
+    "name":"风险标签概率",
+    "data" :"offline_risk_prob",
+    "type":"text"
+  }
+]

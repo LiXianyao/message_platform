@@ -1,0 +1,36 @@
+[
+  {
+    "name":"#序号",
+    "trashType":"label",
+    "data" :"id",
+    "type":"text"
+  },
+  {
+    "name":"角色编码",
+    "data" :"identity",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"角色名",
+    "data" :"identityName",
+    "searchType":"select",
+    "plusType":"select",
+    "newType":"input",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"拥有功能",
+    "data" :"functionName",
+    "searchType":"select",
+    "plusType":"select",
+    "newType":"select",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"删除",
+    "type":"trash"
+  }
+]

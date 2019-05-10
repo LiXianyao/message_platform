@@ -1,0 +1,61 @@
+/*@media all and (min-width:768px)*/
+.topbar {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+    display: block;
+    padding: 20px;
+    overflow-x: visible;
+    overflow-y: visible;
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+    width: 25%;
+}
+
+.nav-sidebar {
+    margin-bottom: 20px;
+}
+
+.nav-sidebar h1{
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-times-circle::before {
+    content: "\f057";
+    color: #ccc;
+}
+
+.nav-tabs li a i {
+    color: #ccc;
+}
+
+.nav-tabs li a i:hover{
+    color: #ffffff;
+}
+

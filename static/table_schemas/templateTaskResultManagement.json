@@ -1,0 +1,79 @@
+[
+  {
+    "name":"#模板编号",
+    "data" :"templateid",
+    "editType":"label",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"签名",
+    "data" :"sign",
+    "searchType":"input",
+    "editType":"label",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"内容",
+    "data" :"content",
+    "searchType":"input",
+    "editType":"label",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"短信数",
+    "data" :"smsCount",
+    "editType":"label",
+    "trashType":"label",
+    "type":"text"
+  },
+  {
+    "name":"样例",
+    "editType":"label",
+    "trashType":"label",
+    "data" :"sample",
+    "type":"text"
+  },
+  {
+    "name":"行业标签1",
+    "searchType":"select",
+    "editType":"select",
+    "trashType":"label",
+    "data" :"industry1Name",
+    "type":"text"
+  },
+  {
+    "name":"行业标签2",
+    "searchType":"select",
+    "editType":"select",
+    "trashType":"label",
+    "data" :"industry2Name",
+    "type":"text"
+  },
+  {
+    "name":"行业标签3",
+    "searchType":"select",
+    "editType":"select",
+    "trashType":"label",
+    "data" :"industry3Name",
+    "type":"text"
+  },
+  {
+    "name":"风险标签",
+    "searchType":"select",
+    "editType":"select",
+    "trashType":"label",
+    "data" :"offlineRiskName",
+    "type":"text"
+  },
+  {
+    "name":"删除",
+    "type":"trash"
+  },
+  {
+    "name":"修改",
+    "type":"edit"
+  }
+]
